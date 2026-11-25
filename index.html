@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desbordamiento – Justicia IV: Beneficios de la paciencia</title>
+<style>
+:root{--red:#B5603A;--deep:#141414;--gold:#D96A3A;--cream:#F8F9FB;--ink:#1A1A1A}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#F8F9FB;transition:background .2s;overflow:hidden;font-family:Calibri,Segoe UI,Arial,sans-serif}
+body{display:grid;place-items:center}
+body.dark,body.dark html{background:#141414}
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(min(100vw,177.78vh)*.012);background:linear-gradient(90deg,var(--red),var(--gold));z-index:0}
+body.dark::before{background:linear-gradient(90deg,var(--gold),#E8956B,var(--gold))}
+#stage{container-type:size;width:min(100vw,177.78vh);aspect-ratio:16/9;position:relative;background:var(--cream);z-index:1}
+.slide{position:absolute;inset:-1px;display:none;flex-direction:column;align-items:center;justify-content:center;padding:6cqw 7cqw;text-align:center;background:var(--cream);color:var(--ink)}
+.slide.on{display:flex}
+
+.slide::after{content:"";position:absolute;right:-9cqw;top:-12cqw;width:30cqw;height:30cqw;border-radius:50%;background:var(--gold);opacity:.13}
+.slide.dark{background:var(--deep);color:#fff}
+
+.slide>*{position:relative;z-index:1}
+h1{font-family:Georgia,serif;font-size:7cqw;letter-spacing:.4cqw;color:var(--red);line-height:1.1}
+.dark h1{color:#fff}
+h2{font-family:Georgia,serif;font-size:4cqw;color:var(--red);letter-spacing:.3cqw;margin-bottom:2.5cqw}
+.dark h2{color:var(--gold)}
+h3{font-size:2.6cqw;color:var(--gold);letter-spacing:.6cqw;margin-bottom:2cqw}
+.bar{display:block;width:16cqw;height:.6cqw;background:var(--gold);margin:2.4cqw auto}
+.sub{font-size:3cqw;color:var(--ink);letter-spacing:.2cqw}.dark .sub{color:#EDE3DC}
+.ic{font-size:7cqw;line-height:1;margin-bottom:1.5cqw}
+.q{font-family:Georgia,serif;font-weight:bold;font-size:3.6cqw;line-height:1.3;color:var(--ink);max-width:80cqw}
+.dark .q{color:#fff}
+.pill{display:inline-block;margin-top:3cqw;padding:1cqw 4cqw;border-radius:5cqw;background:var(--red);color:#fff;font-weight:bold;font-size:3cqw;letter-spacing:.4cqw}
+.dark .pill{background:var(--gold);color:var(--deep)}
+blockquote{font-family:Georgia,serif;font-style:italic;font-size:3.4cqw;line-height:1.45;text-align:left;border-left:.9cqw solid var(--gold);background:rgba(181,96,58,.08);padding:3cqw 4cqw;max-width:84cqw}
+.big{font-family:Georgia,serif;font-weight:bold;font-size:6.2cqw;line-height:1.2;text-align:left;border-left:1cqw solid var(--gold);padding-left:3cqw}
+.txt{font-family:Georgia,serif;font-size:3.3cqw;line-height:1.45;max-width:82cqw}
+mark{background:none;color:var(--gold);font-weight:bold}
+.dark mark{color:#E8956B}
+.grid{display:grid;gap:1.8cqw;width:100%}
+.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:1fr 1fr}
+.card{border:.25cqw solid var(--gold);background:rgba(181,96,58,.07);border-radius:1.2cqw;padding:2cqw 1.5cqw}
+.card b{display:block;font-size:2.2cqw;letter-spacing:.2cqw;color:var(--red)}
+.card .n{font-family:Georgia,serif;font-size:4cqw;font-weight:bold;color:var(--gold)}
+.card .nm{font-size:2.8cqw;font-weight:bold;letter-spacing:.2cqw;color:var(--red)}
+.card p{font-size:1.9cqw;margin-top:1cqw;line-height:1.3}
+.card .ic{font-size:3.6cqw}
+.big2{font-family:Georgia,serif;font-size:3.6cqw;font-weight:bold;color:var(--red)}
+.rows{display:grid;grid-template-columns:27% 1fr;gap:.9cqw 1.5cqw;width:100%;margin-top:1.2cqw}
+.rows .l{background:var(--red);color:#fff;font-weight:bold;font-size:2.3cqw;letter-spacing:.2cqw;display:grid;place-items:center;padding:.6cqw}
+.rows .r{border:.2cqw solid var(--gold);background:rgba(217,106,58,.08);font-size:1.55cqw;line-height:1.3;text-align:left;padding:.7cqw 1.2cqw;display:flex;align-items:center}
+.frame{width:62cqw;height:30cqw;border:.4cqw dashed var(--gold);border-radius:1.5cqw;display:grid;place-items:center;font-size:9cqw;color:var(--red);overflow:hidden;background:rgba(217,106,58,.08)}
+.frame iframe{width:100%;height:100%;border:0}
+.poster{width:100%;height:100%;background:#141414 center/cover;display:grid;place-items:center;cursor:pointer}
+.pl{width:11cqw;height:11cqw;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:5cqw;padding-left:.9cqw;box-shadow:0 .6cqw 2cqw rgba(0,0,0,.45);transition:.2s}
+.poster:hover .pl{transform:scale(1.08);background:var(--gold)}
+.chips{display:flex;gap:1cqw;margin-top:3cqw;flex-wrap:wrap;justify-content:center}
+.chips span{background:var(--gold);color:var(--deep);font-weight:bold;font-size:1.9cqw;padding:.8cqw 1.8cqw;border-radius:3cqw}
+.slide.tight{padding:3.5cqw 4cqw 3cqw;justify-content:flex-start}
+.tight .q{font-size:2.5cqw;line-height:1.25;margin-bottom:1.8cqw;max-width:88cqw}
+.tight .grid{align-items:stretch;flex:1;min-height:0;margin-bottom:0}
+.tight .card{padding:1.6cqw 1.2cqw;display:flex;flex-direction:column;align-items:center;gap:.9cqw;min-height:0}
+.tight .card .ic{font-size:4.2cqw;margin:0}
+.tight .card b{font-size:2.05cqw;letter-spacing:.08cqw;line-height:1.2}
+.tight .card p{font-size:2.05cqw;line-height:1.3;margin:0}
+.tight .pill{margin-top:1.6cqw;font-size:2.4cqw;padding:.7cqw 3.4cqw}
+.at{font-size:2.6cqw;margin-bottom:1.6cqw;max-width:90cqw;line-height:1.25}
+.match{display:grid;grid-template-columns:22cqw 1fr;gap:2.2cqw;width:100%;flex:1;min-height:0}
+.mn{display:grid;grid-template-rows:repeat(6,1fr);gap:1.2cqw}
+.md{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:1.2cqw}
+.mc{cursor:pointer;border-radius:1cqw;transition:.2s;user-select:none;position:relative}
+.mn .mc{background:#3a3a3a;color:#fff;display:grid;place-items:center;font-weight:bold;font-size:2.3cqw;letter-spacing:.2cqw}
+.md .mc{border:.25cqw solid var(--gold);background:rgba(217,106,58,.07);font-size:1.75cqw;line-height:1.3;text-align:left;padding:.7cqw 1.3cqw;display:flex;align-items:center}
+.mc.sel{outline:.5cqw solid var(--ink);outline-offset:.2cqw;transform:scale(1.03);z-index:2}
+.mc.done{cursor:default}
+.mn .mc.done{background:var(--c)}
+.md .mc.done{border-color:var(--c);border-left-width:1.3cqw;background:color-mix(in srgb,var(--c) 20%,white)}
+.mc.done::after{content:"✓";position:absolute;right:.8cqw;top:.4cqw;font-weight:bold;font-size:2cqw;color:var(--c)}
+.mn .mc.done::after{color:#fff}
+.mc.bad{animation:sh .4s}
+@keyframes sh{20%,60%{transform:translateX(-.8cqw)}40%,80%{transform:translateX(.8cqw)}}
+.tools{position:absolute;left:1cqw;bottom:1cqw;display:flex;gap:.6cqw;opacity:.35}
+.tools:hover{opacity:1}
+.tools button{width:3.4cqw;height:3.4cqw;border-radius:50%;border:.15cqw solid var(--gold);background:#fff;color:var(--red);font-size:1.8cqw;cursor:pointer}
+#ui{position:fixed;right:10px;bottom:10px;display:flex;gap:6px;opacity:.25;transition:.2s;z-index:9}
+#ui:hover{opacity:1}
+#ui button{background:var(--red);color:#fff;border:1px solid var(--gold);border-radius:8px;padding:8px 12px;font:600 14px Calibri,Arial;cursor:pointer}
+#cnt{position:fixed;left:12px;bottom:12px;color:#fff;opacity:.35;font:14px Calibri,Arial}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="cnt"></div>
+<div id="ui">
+  <button onclick="go(-1)" title="Anterior">◀</button>
+  <button onclick="go(1)" title="Siguiente">▶</button>
+  <button onclick="fs()" title="Pantalla completa (F)" aria-label="Pantalla completa">⛶</button>
+  <button onclick="dl()" id="dlb" title="Descargar PowerPoint" aria-label="Descargar PowerPoint">⬇</button>
+</div>
+
+<script>
+/* =====================================================================
+   EDITA AQUÍ TODOS LOS TEXTOS. El diseño se genera solo a partir de esto.
+   dark:true = fondo rojo.   hi = palabras que se resaltan en dorado.
+   ===================================================================== */
+const YOUTUBE_URL = "https://www.youtube.com/watch?v=Chpi9b-FHuM"; // Pega aquí el enlace de YouTube de la alabanza (diapositiva 5)
+
+const SLIDES = [
+ {t:'title', title:'BIENVENIDA', icon:'♥', dark:true},
+ {t:'title', title:'VISIÓN', icon:'👁'},
+ {t:'title', title:'REGLAS DEL JUEGO', icon:'🎲'},
+ {t:'title', title:'ROMPEHIELOS', icon:'😊'},
+ {t:'praise', title:'ALABANZA'},
+ {t:'title', title:'DESBORDAMIENTO', sub:'JUSTICIA IV: BENEFICIOS DE LA PACIENCIA', icon:'🌱', dark:true},
+ {t:'fe', title:'DECLARACIÓN DE FE', dark:true,
+  text:'«Declaro que mi boca está el poder de la vida y la muerte. Hablo la palabra de vida y no de muerte, de sanidad no de enfermedad, de riqueza no de pobreza, de bendición no de maldición, de conquista de los territorios porque en boca hay un milagro».',
+  hi:['vida','sanidad','riqueza','bendición','conquista']},
+ {t:'reading', ref:'HEBREOS 10:35-36', speak:'LEE EN VOZ ALTA'},
+ {t:'verse', ref:'HEBREOS 10:35-36',
+  text:'No perdáis, pues, vuestra confianza, que tiene grande galardón; porque os es necesaria la paciencia, para que habiendo hecho la voluntad de Dios, obtengáis la promesa.'},
+ {t:'question', icon:'🕊', q:'¿Por qué son necesarias la fe y la paciencia para alcanzar las promesas de Dios?', badge:'EXPLICA'},
+ {t:'cronos', q:'¿Qué diferencia hay entre el tiempo Cronos y el tiempo Kairós, y cómo nos ayuda la paciencia a esperar el tiempo de Dios?', badge:'COMENTA',
+  a:{icon:'⏱', name:'CRONOS', sub:'Tiempo cronológico'}, b:{icon:'☀', name:'KAIRÓS', sub:'Tiempo oportuno de Dios'}},
+ {t:'question', icon:'★', q:'Comparte un testimonio de algo que esperaste con paciencia, sin rendirte, y que finalmente viste dar fruto en tu vida.'},
+ {t:'six', title:'LA PACIENCIA DESARROLLA SEIS BENEFICIOS EN NUESTRA VIDA',
+  items:['UNCIÓN','HUMILDAD','SABIDURÍA','REVELACIÓN','FAVOR','GRACIA']},
+ {t:'reading', ref:'ISAÍAS 10:27'},
+ {t:'verse', ref:'ISAÍAS 10:27',
+  text:'Y acontecerá en aquel día, que su carga será quitada de tu hombro, y su yugo de tu cuello, y el yugo se pudrirá a causa de la unción.'},
+ {t:'assoc', title:'Une el Beneficio con su descripción',
+  pairs:[ // cada beneficio con SU definición
+   {n:'UNCIÓN', d:'Es el poder del Espíritu Santo que nos capacita para obedecer a Dios y romper yugos, temores, ataduras y limitaciones que no podemos vencer con nuestras fuerzas.'},
+   {n:'HUMILDAD', d:'Nos permite dejarnos enseñar, obedecer a Dios y respetar sus tiempos, sin adelantarnos a sus planes.'},
+   {n:'SABIDURÍA', d:'Nos da entendimiento para actuar correctamente, experimentar paz y alegría y aplicar la Palabra de Dios. (Santiago 1:5).'},
+   {n:'REVELACIÓN', d:'Es tener la Palabra depositada en nuestro corazón para saber cómo actuar ante cualquier situación.'},
+   {n:'FAVOR', d:'Es el poder y la capacidad que Dios da cuando lo necesitamos para cumplir su voluntad.'},
+   {n:'GRACIA', d:'Es la influencia divina de Dios en nuestro corazón, que nos ayuda a obedecer, confiar en sus tiempos y recibir lo que no podemos conseguir por nuestros propios méritos.'}],
+  order:[2,3,5,0,1,4]}, // orden en que se muestran las definiciones (aleatorio): números = posición en "pairs"
+ {t:'four', q:'Las cuatro maneras sencillas de desarrollar sabiduría y cómo podemos practicarlas cada día. ¿Cómo podemos hacerlo?', badge:'COMENTA',
+  items:[
+   {icon:'👑', h:'HONRANDO A DIOS', d:'Valorando y obedeciendo sus principios y consejos.'},
+   {icon:'🕊', h:'ESCUCHANDO AL ESPÍRITU SANTO', d:'Prestando atención a su dirección en nuestro interior.'},
+   {icon:'🌱', h:'CONOCIENDO LOS BENEFICIOS DE PRACTICAR LA PALABRA', d:'Confiando que Dios no miente y que obedecer su Palabra produce buenos resultados.'},
+   {icon:'📖', h:'CONOCIENDO LA PALABRA', d:'Escuchándola y guardándola en el corazón, no solamente memorizándola.'}]},
+ {t:'big', text:'LA PACIENCIA NOS HACE FUERTES Y CONSTANTES.', dark:true},
+ {t:'reading', ref:'JUAN 5:19'},
+ {t:'verse', ref:'JUAN 5:19',
+  text:'Respondió entonces Jesús, y les dijo: De cierto, de cierto os digo: No puede el Hijo hacer nada por sí mismo, sino lo que ve hacer al Padre; porque todo lo que el Padre hace, también lo hace el Hijo igualmente.'},
+ {t:'question', icon:'🤝', q:'¿Por qué es importante rodearnos de personas de fe y paciencia, y cómo podemos vencer el desaliento y la frustración?', badge:'EXPLICA Y COMENTA'},
+ {t:'declare', title:'DECLARA', dark:true,
+  text:'«Creo, hablo y actúo según lo que Dios ha dicho. Dios forma en mí un carácter sólido, maduro y perseverante».',
+  hi:['Creo','hablo','actúo','carácter'],
+  chips:['CREO','HABLO','ACTÚO','CARÁCTER','MADUREZ','PERSEVERANCIA']},
+ {t:'title', title:'OFRENDA', icon:'🤲', dark:true}
+];
+/* ===================== FIN DE LA ZONA EDITABLE ===================== */
+
+const hi=(t,w=[])=>w.length?t.replace(new RegExp('('+w.join('|')+')','gi'),'<mark>$1</mark>'):t;
+const R={
+ title:s=>`<div class="ic">${s.icon||''}</div><h1>${s.title}</h1><i class="bar"></i>${s.sub?`<p class="sub">${s.sub}</p>`:''}`,
+ verse:s=>`<h2>${s.ref}</h2><blockquote>${s.text}</blockquote>`,
+ reading:s=>`<h3>LECTURA BÍBLICA</h3><h1>${s.ref}</h1><i class="bar"></i>${s.speak?`<div class="pill">🔊 ${s.speak}</div>`:''}`,
+ question:s=>`<div class="ic">${s.icon||''}</div><p class="q">${s.q}</p>${s.badge?`<div class="pill">${s.badge}</div>`:''}`,
+ cronos:s=>`<p class="q" style="font-size:2.9cqw">${s.q}</p><div class="grid g2" style="margin-top:3cqw;width:80%">${[s.a,s.b].map(p=>`<div class="card"><div class="ic">${p.icon}</div><div class="nm">${p.name}</div><p style="font-size:2.3cqw">${p.sub}</p></div>`).join('')}</div><div class="pill">${s.badge}</div>`,
+ six:s=>`<h2 style="font-size:3.4cqw;max-width:80cqw">${s.title}</h2><div class="grid g3" style="width:84%">${s.items.map((n,i)=>`<div class="card"><div class="n">${i+1}</div><div class="nm">${n}</div></div>`).join('')}</div>`,
+ assoc:s=>`<h2 class="at">${s.title}</h2><div class="match"><div class="mn">${s.pairs.map((x,i)=>`<div class="mc" data-k="n" data-i="${i}">${x.n}</div>`).join('')}</div><div class="md">${s.order.map(i=>`<div class="mc" data-k="d" data-i="${i}">${s.pairs[i].d}</div>`).join('')}</div></div><div class="tools"><button onclick="mReset()" title="Reiniciar" aria-label="Reiniciar">↺</button><button onclick="mReveal()" title="Mostrar respuestas" aria-label="Mostrar respuestas">✓</button></div>`,
+ four:s=>`<p class="q">${s.q}</p><div class="grid g4">${s.items.map(i=>`<div class="card"><div class="ic">${i.icon}</div><b>${i.h}</b><p>${i.d}</p></div>`).join('')}</div><div class="pill">${s.badge}</div>`,
+ big:s=>`<div class="big">${s.text}</div>`,
+ fe:s=>`<h2>${s.title}</h2><p class="txt">${hi(s.text,s.hi)}</p>`,
+ declare:s=>`<h2 style="font-size:5cqw">${s.title}</h2><p class="txt" style="font-size:3.8cqw">${hi(s.text,s.hi)}</p><div class="chips">${s.chips.map(c=>`<span>${c}</span>`).join('')}</div>`,
+ praise:s=>{const m=YOUTUBE_URL.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+   return `<h2 style="font-size:5cqw">${s.title}</h2><div class="frame" id="yt">${m?`<div class="poster" data-id="${m[1]}" style="background-image:url(https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg)"><span class="pl">▶</span></div>`:'▶'}</div>`}
+};
+const stage=document.getElementById('stage');
+SLIDES.forEach((s,i)=>{const e=document.createElement('section');e.className='slide'+(s.dark?' dark':'')+(s.t==='four'||s.t==='assoc'?' tight':'');e.innerHTML=R[s.t](s);stage.appendChild(e)});
+const els=[...stage.children];let cur=0;
+function show(n){cur=Math.max(0,Math.min(els.length-1,n));els.forEach((e,i)=>e.classList.toggle('on',i===cur));
+  document.body.classList.toggle('dark',!!SLIDES[cur].dark);document.documentElement.style.background=SLIDES[cur].dark?'#141414':'#F8F9FB';
+  document.getElementById('cnt').textContent=(cur+1)+' / '+els.length;history.replaceState(null,'','#'+(cur+1))}
+function go(d){show(cur+d)}
+function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+addEventListener('keydown',e=>{
+ if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(1)}
+ else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(-1)}
+ else if(e.key==='Home')show(0);else if(e.key==='End')show(els.length-1);
+ else if(e.key==='f'||e.key==='F')fs()});
+const MC=['#B5603A','#2F2F2F','#C98A1B','#5E7A5E','#8C4A2F','#4A6FA5'];
+const mDone=x=>{x.classList.remove('sel');x.classList.add('done');x.style.setProperty('--c',MC[x.dataset.i])};
+function mReset(){document.querySelectorAll('.mc').forEach(x=>x.classList.remove('done','sel','bad'))}
+function mReveal(){document.querySelectorAll('.mc').forEach(mDone)}
+stage.addEventListener('click',e=>{
+ const y=e.target.closest('.poster');
+ if(y){const id=y.dataset.id;
+  if(location.protocol==='file:'){window.open('https://www.youtube.com/watch?v='+id,'_blank');return} // YouTube no permite reproducir dentro de un archivo local
+  y.parentNode.innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;return}
+ const c=e.target.closest('.mc');
+ if(c){if(c.classList.contains('done'))return;const prev=document.querySelector('.mc.sel');
+  if(prev===c){c.classList.remove('sel');return}
+  if(!prev||prev.dataset.k===c.dataset.k){if(prev)prev.classList.remove('sel');c.classList.add('sel');return}
+  prev.classList.remove('sel');
+  if(prev.dataset.i===c.dataset.i){mDone(prev);mDone(c)}else[prev,c].forEach(x=>{x.classList.add('bad');setTimeout(()=>x.classList.remove('bad'),450)});
+  return}
+ if(e.target.closest('.tools'))return;
+const r=stage.getBoundingClientRect();go(e.clientX<r.left+r.width*.3?-1:1)});
+show((parseInt(location.hash.slice(1))||1)-1);
+
+/* ---------- Descargar como PowerPoint (.pptx) con los mismos textos ---------- */
+function loadScript(src){return new Promise((ok,ko)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
+async function dl(){
+ const b=document.getElementById('dlb');b.textContent='…';
+ try{
+  if(!window.PptxGenJS)await loadScript('https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js');
+  const p=new PptxGenJS();p.layout='LAYOUT_16x9';
+  const RED='B5603A',DEEP='141414',GOLD='D96A3A',CREAM='F8F9FB',INK='1A1A1A';
+  for(const s of SLIDES){
+   const sl=p.addSlide(),D=!!s.dark;sl.background={color:D?DEEP:CREAM};
+   const fg=D?'FFFFFF':INK,ac=D?'E8956B':RED;
+   sl.addShape(p.ShapeType.rect,{x:0,y:0,w:10,h:.1,fill:{color:GOLD},line:{type:'none'}});
+   const tx=(t,x,y,w,h,o={})=>sl.addText(t,Object.assign({x,y,w,h,align:'center',valign:'middle',fontFace:'Georgia',color:fg,margin:0,isTextBox:true},o));
+   const pill=(t,y)=>{sl.addShape(p.ShapeType.roundRect,{x:3,y,w:4,h:.6,rectRadius:.28,fill:{color:D?GOLD:RED},line:{type:'none'}});tx(t,3,y,4,.6,{fontSize:20,bold:true,color:D?DEEP:'FFFFFF',fontFace:'Calibri'})};
+   const clean=t=>t.replace(/<[^>]+>/g,'');
+   switch(s.t){
+    case 'title':tx(s.title,.5,s.sub?1.7:2,9,1.2,{fontSize:s.title.length>12?48:58,bold:true,color:ac});if(s.sub)tx(s.sub,.5,3.1,9,.8,{fontSize:22,fontFace:'Calibri'});break;
+    case 'praise':tx(s.title,.5,.4,9,.9,{fontSize:42,bold:true,color:ac});sl.addShape(p.ShapeType.roundRect,{x:2,y:1.5,w:6,h:3.4,rectRadius:.15,fill:{color:CREAM},line:{color:GOLD,width:2,dashType:'dash'}});sl.addNotes('Insertar aquí el enlace de YouTube: '+YOUTUBE_URL);break;
+    case 'reading':tx('LECTURA BÍBLICA',.5,1,9,.6,{fontSize:24,bold:true,color:GOLD});tx(s.ref,.5,1.8,9,1.4,{fontSize:50,bold:true,color:ac});if(s.speak)pill('🔊 '+s.speak,3.7);break;
+    case 'verse':tx(s.ref,.5,.35,9,.8,{fontSize:30,bold:true,color:ac});sl.addShape(p.ShapeType.rect,{x:.7,y:1.4,w:.09,h:3.6,fill:{color:GOLD},line:{type:'none'}});tx(s.text,1.1,1.4,8,3.6,{fontSize:24,italic:true,align:'left'});break;
+    case 'question':tx(s.q,.8,.9,8.4,3,{fontSize:26,bold:true});if(s.badge)pill(s.badge,4.2);break;
+    case 'cronos':tx(s.q,.7,.3,8.6,1.3,{fontSize:18,bold:true});[s.a,s.b].forEach((c,i)=>{const x=.6+i*4.7;sl.addShape(p.ShapeType.roundRect,{x,y:1.8,w:4.1,h:2.2,rectRadius:.1,fill:{color:CREAM},line:{color:GOLD,width:1.5}});tx(c.name,x,2.3,4.1,.7,{fontSize:28,bold:true,color:RED});tx(c.sub,x,3.1,4.1,.5,{fontSize:18,fontFace:'Calibri'})});pill(s.badge,4.4);break;
+    case 'six':tx(s.title,.7,.3,8.6,1.2,{fontSize:24,bold:true,color:ac});s.items.forEach((n,i)=>{const x=.6+(i%3)*2.9,y=1.75+Math.floor(i/3)*1.6;sl.addShape(p.ShapeType.roundRect,{x,y,w:2.7,h:1.4,rectRadius:.1,fill:{color:CREAM},line:{color:GOLD,width:1.5}});tx(String(i+1),x,y+.1,2.7,.5,{fontSize:26,bold:true,color:GOLD});tx(n,x,y+.7,2.7,.5,{fontSize:19,bold:true,color:RED,fontFace:'Calibri'})});break;
+    case 'assoc':{tx(s.title,.5,.2,9,.7,{fontSize:19,bold:true,color:ac});s.pairs.forEach((x,i)=>{const y=1+i*.72;sl.addShape(p.ShapeType.rect,{x:.4,y,w:2.3,h:.66,fill:{color:RED},line:{type:'none'}});tx(x.n,.4,y,2.3,.66,{fontSize:16,bold:true,color:'FFFFFF',fontFace:'Calibri'})});
+      s.order.forEach((k,j)=>{const x=3+(j%2)*3.3,y=1+Math.floor(j/2)*1.5;sl.addShape(p.ShapeType.rect,{x,y,w:3.15,h:1.4,fill:{color:CREAM},line:{color:GOLD,width:1}});tx(s.pairs[k].d,x+.1,y,2.95,1.4,{fontSize:11.5,align:'left',fontFace:'Calibri'})});break}
+    case 'four':tx(s.q,.6,.2,8.8,1,{fontSize:17,bold:true});s.items.forEach((c,i)=>{const x=.5+i*2.3;sl.addShape(p.ShapeType.roundRect,{x,y:1.35,w:2.1,h:3.2,rectRadius:.1,fill:{color:CREAM},line:{color:GOLD,width:1.25}});tx(c.h,x+.1,1.5,1.9,1.1,{fontSize:12,bold:true,color:RED,fontFace:'Calibri'});tx(c.d,x+.1,2.7,1.9,1.7,{fontSize:11,valign:'top',fontFace:'Calibri'})});pill(s.badge,4.8);break;
+    case 'big':tx(s.text,1,1,8,3.6,{fontSize:44,bold:true,align:'left'});break;
+    case 'fe':case 'declare':{tx(s.title,.5,.3,9,.9,{fontSize:34,bold:true,color:ac});
+      const parts=clean(hi(s.text,s.hi)).length?s.text.split(new RegExp('('+s.hi.join('|')+')','i')).map((t,i)=>({text:t,options:i%2?{color:ac,bold:true}:{}})).filter(r=>r.text):s.text;
+      tx(parts,.9,1.2,8.2,s.t==='fe'?3.8:2.3,{fontSize:s.t==='fe'?22:27});
+      if(s.chips)s.chips.forEach((w,i)=>{const x=.61+i*1.48;sl.addShape(p.ShapeType.roundRect,{x,y:4,w:1.38,h:.6,rectRadius:.25,fill:{color:GOLD},line:{type:'none'}});tx(w,x,4,1.38,.6,{fontSize:11,bold:true,color:DEEP,fontFace:'Calibri'})});break}
+   }
+  }
+  await p.writeFile({fileName:'Desbordamiento_Justicia_IV.pptx'});
+ }catch(e){alert('No se pudo generar el PowerPoint (se necesita conexión a internet la primera vez).')}
+ b.textContent='⬇';
+}
+</script>
+</body>
+</html>
