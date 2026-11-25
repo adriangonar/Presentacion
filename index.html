@@ -64,6 +64,11 @@ mark{background:none;color:var(--gold);font-weight:bold}
 .tight .card b{font-size:2.05cqw;letter-spacing:.08cqw;line-height:1.2}
 .tight .card p{font-size:2.05cqw;line-height:1.3;margin:0}
 .tight .pill{margin-top:1.6cqw;font-size:2.4cqw;padding:.7cqw 3.4cqw}
+.vt{justify-content:flex-start;padding-top:4.5cqw}
+.vt .ic{font-size:4.5cqw;margin-bottom:.8cqw}
+.vt h1{font-size:5cqw}
+.vt .bar{margin:1.4cqw auto}
+.vtext{font-family:Georgia,serif;font-size:3cqw;line-height:1.45;max-width:84cqw;white-space:pre-line}
 .at{font-size:2.6cqw;margin-bottom:1.6cqw;max-width:90cqw;line-height:1.25}
 .match{display:grid;grid-template-columns:22cqw 1fr;gap:2.2cqw;width:100%;flex:1;min-height:0}
 .mn{display:grid;grid-template-rows:repeat(6,1fr);gap:1.2cqw}
@@ -103,11 +108,12 @@ mark{background:none;color:var(--gold);font-weight:bold}
    EDITA AQUÍ TODOS LOS TEXTOS. El diseño se genera solo a partir de esto.
    dark:true = fondo rojo.   hi = palabras que se resaltan en dorado.
    ===================================================================== */
-const YOUTUBE_URL = "https://www.youtube.com/watch?v=Chpi9b-FHuM"; // Pega aquí el enlace de YouTube de la alabanza (diapositiva 5)
+const YOUTUBE_URL = ""; // Pega aquí el enlace de YouTube de la alabanza (diapositiva 5)
 
 const SLIDES = [
  {t:'title', title:'BIENVENIDA', icon:'♥', dark:true},
- {t:'title', title:'VISIÓN', icon:'👁'},
+ {t:'title', title:'VISIÓN', icon:'👁',
+  text:`Somos una iglesia en movimiento con una visión pastoral relacional, que vivimos la misión en fe, esperanza y amor a las naciones, para que todos sean pastoreados y que ninguno se pierda, siendo, haciendo, equipando y plantando discípulos a tráves de las relaciones en células de amistad. Esta es nuestra visión y propósito.`}, 
  {t:'title', title:'REGLAS DEL JUEGO', icon:'🎲'},
  {t:'title', title:'ROMPEHIELOS', icon:'😊'},
  {t:'praise', title:'ALABANZA'},
@@ -127,7 +133,7 @@ const SLIDES = [
  {t:'reading', ref:'ISAÍAS 10:27'},
  {t:'verse', ref:'ISAÍAS 10:27',
   text:'Y acontecerá en aquel día, que su carga será quitada de tu hombro, y su yugo de tu cuello, y el yugo se pudrirá a causa de la unción.'},
- {t:'assoc', title:'Une el Beneficio con su descripción',
+ {t:'assoc', title:'LOS BENEFICIOS QUE DESARROLLA LA PACIENCIA EN NUESTRA VIDA',
   pairs:[ // cada beneficio con SU definición
    {n:'UNCIÓN', d:'Es el poder del Espíritu Santo que nos capacita para obedecer a Dios y romper yugos, temores, ataduras y limitaciones que no podemos vencer con nuestras fuerzas.'},
    {n:'HUMILDAD', d:'Nos permite dejarnos enseñar, obedecer a Dios y respetar sus tiempos, sin adelantarnos a sus planes.'},
@@ -157,7 +163,7 @@ const SLIDES = [
 
 const hi=(t,w=[])=>w.length?t.replace(new RegExp('('+w.join('|')+')','gi'),'<mark>$1</mark>'):t;
 const R={
- title:s=>`<div class="ic">${s.icon||''}</div><h1>${s.title}</h1><i class="bar"></i>${s.sub?`<p class="sub">${s.sub}</p>`:''}`,
+ title:s=>`<div class="ic">${s.icon||''}</div><h1>${s.title}</h1><i class="bar"></i>${s.sub?`<p class="sub">${s.sub}</p>`:''}${s.text?`<p class="vtext">${s.text}</p>`:''}`,
  verse:s=>`<h2>${s.ref}</h2><blockquote>${s.text}</blockquote>`,
  reading:s=>`<h3>LECTURA BÍBLICA</h3><h1>${s.ref}</h1><i class="bar"></i>${s.speak?`<div class="pill">🔊 ${s.speak}</div>`:''}`,
  question:s=>`<div class="ic">${s.icon||''}</div><p class="q">${s.q}</p>${s.badge?`<div class="pill">${s.badge}</div>`:''}`,
@@ -172,7 +178,7 @@ const R={
    return `<h2 style="font-size:5cqw">${s.title}</h2><div class="frame" id="yt">${m?`<div class="poster" data-id="${m[1]}" style="background-image:url(https://i.ytimg.com/vi/${m[1]}/hqdefault.jpg)"><span class="pl">▶</span></div>`:'▶'}</div>`}
 };
 const stage=document.getElementById('stage');
-SLIDES.forEach((s,i)=>{const e=document.createElement('section');e.className='slide'+(s.dark?' dark':'')+(s.t==='four'||s.t==='assoc'?' tight':'');e.innerHTML=R[s.t](s);stage.appendChild(e)});
+SLIDES.forEach((s,i)=>{const e=document.createElement('section');e.className='slide'+(s.dark?' dark':'')+(s.t==='four'||s.t==='assoc'?' tight':'')+(s.t==='title'&&s.text?' vt':'');e.innerHTML=R[s.t](s);stage.appendChild(e)});
 const els=[...stage.children];let cur=0;
 function show(n){cur=Math.max(0,Math.min(els.length-1,n));els.forEach((e,i)=>e.classList.toggle('on',i===cur));
   document.body.classList.toggle('dark',!!SLIDES[cur].dark);document.documentElement.style.background=SLIDES[cur].dark?'#141414':'#F8F9FB';
@@ -220,7 +226,7 @@ async function dl(){
    const pill=(t,y)=>{sl.addShape(p.ShapeType.roundRect,{x:3,y,w:4,h:.6,rectRadius:.28,fill:{color:D?GOLD:RED},line:{type:'none'}});tx(t,3,y,4,.6,{fontSize:20,bold:true,color:D?DEEP:'FFFFFF',fontFace:'Calibri'})};
    const clean=t=>t.replace(/<[^>]+>/g,'');
    switch(s.t){
-    case 'title':tx(s.title,.5,s.sub?1.7:2,9,1.2,{fontSize:s.title.length>12?48:58,bold:true,color:ac});if(s.sub)tx(s.sub,.5,3.1,9,.8,{fontSize:22,fontFace:'Calibri'});break;
+    case 'title':if(s.text){tx(s.title,.5,.35,9,.9,{fontSize:38,bold:true,color:ac});tx(s.text,.9,1.5,8.2,3.7,{fontSize:22,valign:'top'});break}tx(s.title,.5,s.sub?1.7:2,9,1.2,{fontSize:s.title.length>12?48:58,bold:true,color:ac});if(s.sub)tx(s.sub,.5,3.1,9,.8,{fontSize:22,fontFace:'Calibri'});break;
     case 'praise':tx(s.title,.5,.4,9,.9,{fontSize:42,bold:true,color:ac});sl.addShape(p.ShapeType.roundRect,{x:2,y:1.5,w:6,h:3.4,rectRadius:.15,fill:{color:CREAM},line:{color:GOLD,width:2,dashType:'dash'}});sl.addNotes('Insertar aquí el enlace de YouTube: '+YOUTUBE_URL);break;
     case 'reading':tx('LECTURA BÍBLICA',.5,1,9,.6,{fontSize:24,bold:true,color:GOLD});tx(s.ref,.5,1.8,9,1.4,{fontSize:50,bold:true,color:ac});if(s.speak)pill('🔊 '+s.speak,3.7);break;
     case 'verse':tx(s.ref,.5,.35,9,.8,{fontSize:30,bold:true,color:ac});sl.addShape(p.ShapeType.rect,{x:.7,y:1.4,w:.09,h:3.6,fill:{color:GOLD},line:{type:'none'}});tx(s.text,1.1,1.4,8,3.6,{fontSize:24,italic:true,align:'left'});break;
