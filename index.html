@@ -154,7 +154,7 @@ const SLIDES = [
   text:'Respondió entonces Jesús, y les dijo: De cierto, de cierto os digo: No puede el Hijo hacer nada por sí mismo, sino lo que ve hacer al Padre; porque todo lo que el Padre hace, también lo hace el Hijo igualmente.'},
  {t:'question', icon:'🤝', q:'¿Por qué es importante rodearnos de personas de fe y paciencia, y cómo podemos vencer el desaliento y la frustración?', badge:'EXPLICA Y COMENTA'},
  {t:'declare', title:'DECLARA', dark:true,
-  text:'«Creo, hablo y actúo según lo que Dios ha dicho. Dios forma en mí un carácter sólido, maduro y perseverante».',
+  text:'«Creo, hablo y actúo según lo que Dios ha dicho. Dios forma en mí un carácter sólido, maduro y perseverante. Recibo unción, humildad, sabiduría, revelación, favoy y gracia. Amén».',
   hi:['Creo','hablo','actúo','carácter'],
   chips:['CREO','HABLO','ACTÚO','CARÁCTER','MADUREZ','PERSEVERANCIA']},
  {t:'title', title:'OFRENDA', icon:'🤲', dark:true}
@@ -243,7 +243,7 @@ async function dl(){
       if(s.chips)s.chips.forEach((w,i)=>{const x=.61+i*1.48;sl.addShape(p.ShapeType.roundRect,{x,y:4,w:1.38,h:.6,rectRadius:.25,fill:{color:GOLD},line:{type:'none'}});tx(w,x,4,1.38,.6,{fontSize:11,bold:true,color:DEEP,fontFace:'Calibri'})});break}
    }
   }
-  await p.writeFile({fileName:'Desbordamiento_Justicia_IV.pptx'});
+  await p.writeFile({fileName:'Beneficio_de_la_Paciencia.pptx'});
  }catch(e){alert('No se pudo generar el PowerPoint (se necesita conexión a internet la primera vez).')}
  b.textContent='⬇';
 }
