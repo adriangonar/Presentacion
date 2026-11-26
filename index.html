@@ -157,7 +157,9 @@ const SLIDES = [
   text:'«Creo, hablo y actúo según lo que Dios ha dicho. Dios forma en mí un carácter sólido, maduro y perseverante. Recibo unción, humildad, sabiduría, revelación, favor y gracia. Amén».',
   hi:['Creo','hablo','actúo','carácter', 'maduro', 'perseverante'],
   chips:['CREO','HABLO','ACTÚO','CARÁCTER','MADUREZ','PERSEVERANCIA']},
- {t:'title', title:'OFRENDA', icon:'🤲', dark:true}
+ {t:'title', title:'OFRENDA', icon:'🤲', dark:true},
+ {t:'invite', icon:'👥', title:'No te olvides de traer una persona al siguiente encuentro.', sub:'Una invitación puede cambiar una vida.', badge:'¿A QUIÉN VAS A INVITAR?'},
+ {t:'title', title:'PICOTEO', icon:'🍴', dark:true}
 ];
 /* ===================== FIN DE LA ZONA EDITABLE ===================== */
 
@@ -171,6 +173,7 @@ const R={
  six:s=>`<h2 style="font-size:3.4cqw;max-width:80cqw">${s.title}</h2><div class="grid g3" style="width:84%">${s.items.map((n,i)=>`<div class="card"><div class="n">${i+1}</div><div class="nm">${n}</div></div>`).join('')}</div>`,
  assoc:s=>`<h2 class="at">${s.title}</h2><div class="match"><div class="mn">${s.pairs.map((x,i)=>`<div class="mc" data-k="n" data-i="${i}">${x.n}</div>`).join('')}</div><div class="md">${s.order.map(i=>`<div class="mc" data-k="d" data-i="${i}">${s.pairs[i].d}</div>`).join('')}</div></div><div class="tools"><button onclick="mReset()" title="Reiniciar" aria-label="Reiniciar">↺</button><button onclick="mReveal()" title="Mostrar respuestas" aria-label="Mostrar respuestas">✓</button></div>`,
  four:s=>`<p class="q">${s.q}</p><div class="grid g4">${s.items.map(i=>`<div class="card"><div class="ic">${i.icon}</div><b>${i.h}</b><p>${i.d}</p></div>`).join('')}</div><div class="pill">${s.badge}</div>`,
+ invite:s=>`<div class="ic">${s.icon||''}</div><h1 style="font-size:5.2cqw;max-width:84cqw;line-height:1.2;letter-spacing:.1cqw">${s.title}</h1><i class="bar"></i><p class="sub" style="font-style:italic">${s.sub}</p><div class="pill">${s.badge}</div>`,
  big:s=>`<div class="big">${s.text}</div>`,
  fe:s=>`<h2>${s.title}</h2><p class="txt">${hi(s.text,s.hi)}</p>`,
  declare:s=>`<h2 style="font-size:5cqw">${s.title}</h2><p class="txt" style="font-size:3.8cqw">${hi(s.text,s.hi)}</p><div class="chips">${s.chips.map(c=>`<span>${c}</span>`).join('')}</div>`,
@@ -230,6 +233,7 @@ async function dl(){
     case 'praise':tx(s.title,.5,.4,9,.9,{fontSize:42,bold:true,color:ac});sl.addShape(p.ShapeType.roundRect,{x:2,y:1.5,w:6,h:3.4,rectRadius:.15,fill:{color:CREAM},line:{color:GOLD,width:2,dashType:'dash'}});sl.addNotes('Insertar aquí el enlace de YouTube: '+YOUTUBE_URL);break;
     case 'reading':tx('LECTURA BÍBLICA',.5,1,9,.6,{fontSize:24,bold:true,color:GOLD});tx(s.ref,.5,1.8,9,1.4,{fontSize:50,bold:true,color:ac});if(s.speak)pill('🔊 '+s.speak,3.7);break;
     case 'verse':tx(s.ref,.5,.35,9,.8,{fontSize:30,bold:true,color:ac});sl.addShape(p.ShapeType.rect,{x:.7,y:1.4,w:.09,h:3.6,fill:{color:GOLD},line:{type:'none'}});tx(s.text,1.1,1.4,8,3.6,{fontSize:24,italic:true,align:'left'});break;
+    case 'invite':tx(s.title,.8,1,8.4,1.7,{fontSize:34,bold:true,color:ac});tx(s.sub,.8,2.8,8.4,.7,{fontSize:22,italic:true,fontFace:'Calibri'});pill(s.badge,3.9);break;
     case 'question':tx(s.q,.8,.9,8.4,3,{fontSize:26,bold:true});if(s.badge)pill(s.badge,4.2);break;
     case 'cronos':tx(s.q,.7,.3,8.6,1.3,{fontSize:18,bold:true});[s.a,s.b].forEach((c,i)=>{const x=.6+i*4.7;sl.addShape(p.ShapeType.roundRect,{x,y:1.8,w:4.1,h:2.2,rectRadius:.1,fill:{color:CREAM},line:{color:GOLD,width:1.5}});tx(c.name,x,2.3,4.1,.7,{fontSize:28,bold:true,color:RED});tx(c.sub,x,3.1,4.1,.5,{fontSize:18,fontFace:'Calibri'})});pill(s.badge,4.4);break;
     case 'six':tx(s.title,.7,.3,8.6,1.2,{fontSize:24,bold:true,color:ac});s.items.forEach((n,i)=>{const x=.6+(i%3)*2.9,y=1.75+Math.floor(i/3)*1.6;sl.addShape(p.ShapeType.roundRect,{x,y,w:2.7,h:1.4,rectRadius:.1,fill:{color:CREAM},line:{color:GOLD,width:1.5}});tx(String(i+1),x,y+.1,2.7,.5,{fontSize:26,bold:true,color:GOLD});tx(n,x,y+.7,2.7,.5,{fontSize:19,bold:true,color:RED,fontFace:'Calibri'})});break;
